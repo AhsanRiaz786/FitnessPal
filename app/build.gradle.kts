@@ -1,5 +1,9 @@
 plugins {
     alias(libs.plugins.androidApplication)
+//    id("com.android.application")
+    id("com.google.gms.google-services")
+
+
 }
 
 android {
@@ -37,7 +41,14 @@ dependencies {
     implementation(libs.material)
     implementation(libs.activity)
     implementation(libs.constraintlayout)
+    implementation(libs.firebase.auth)
+    // https://mvnrepository.com/artifact/mysql/mysql-connector-java
+
+    //noinspection GradlePath
+    implementation(files("C:/Users/ahsan/OneDrive/Desktop/Google Maps Scraper/mysql-connector-java-8.0.28.jar"))
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
+
+
 }
