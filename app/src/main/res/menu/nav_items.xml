@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/dashboard"
+    android:title="Steps"
+    android:icon="@drawable/run"/>
+    <item android:id="@+id/activity"
+        android:title="Workout"
+        android:icon="@drawable/exercise"/>
+    <item android:id="@+id/nutrition"
+        android:title="Nutrition"
+        android:icon="@drawable/nutrition"/>
+    <item android:id="@+id/workout"
+        android:title="Profile"
+        android:icon="@drawable/baseline_person_24"/>
+</menu>

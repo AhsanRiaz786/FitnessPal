@@ -47,9 +47,11 @@ dependencies {
     implementation(libs.firebase.auth)
     implementation(platform("com.google.firebase:firebase-bom:33.0.0"))
 
+
     // Add the dependency for the Realtime Database library
     // When using the BoM, you don't specify versions in Firebase library dependencies
     implementation("com.google.firebase:firebase-database")
+    implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
 
     // https://mvnrepository.com/artifact/mysql/mysql-connector-java
     //noinspection UseTomlInstead

@@ -4,6 +4,15 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACTIVITY_RECOGNITION" />
+    <uses-permission android:name="android.permission.BODY_SENSORS" />
+    <uses-permission android:name="android.permission.ACTIVITY_RECOGNITION" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" /> <!-- Permission to access the internet (for Firebase) -->
+    <!-- Permission for step counting and activity recognition -->
+    <!-- Ensure the app can run in the background for step counting -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
     <application
         android:allowBackup="true"
@@ -16,12 +25,12 @@
         android:theme="@style/Theme.FitnessPal"
         tools:targetApi="31">
         <activity
+            android:name=".StepsGraphActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="false"
             android:theme="@style/Theme.FitnessPal" />
-        <activity
-            android:name=".MainView"
-            android:exported="false" />
         <activity
             android:name=".PhysicalData"
             android:exported="false" />
@@ -30,9 +39,6 @@
             android:exported="false" />
         <activity
             android:name=".ForgotActivity"
-            android:exported="false" />
-        <activity
-            android:name=".Forgot_Password"
             android:exported="false" />
         <activity
             android:name=".Login_Activity"

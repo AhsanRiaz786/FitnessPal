@@ -4,4 +4,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="ligthblue">#4287f5</color>
     <color name="abitdarklightblue">#0763f5</color>
+    <color name="StepsbarColor">#fc3d03</color>
+    <color name="DistancebarColor">#fca903</color>
+    <color name="CaloriesbarColor">#000000</color>
 </resources>
