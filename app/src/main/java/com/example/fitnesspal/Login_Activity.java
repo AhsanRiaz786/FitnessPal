@@ -1,4 +1,5 @@
 package com.example.fitnesspal;
+import android.content.SharedPreferences;
 import android.util.Patterns;
 import android.content.Intent;
 import android.os.Bundle;
@@ -20,6 +21,11 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.Objects;
 
@@ -27,6 +33,8 @@ public class Login_Activity extends AppCompatActivity {
 
 
     private final FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    public static final String SHARED_PREF = "sharedPrefs";
+
     @Override
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +45,7 @@ public class Login_Activity extends AppCompatActivity {
         EditText password_field = findViewById(R.id.password);
         Button login = findViewById(R.id.loginbtn);
         TextView forgot_password = findViewById(R.id.forgot);
+        loginCheck();
 
 
         TextView btn = findViewById(R.id.registertextview);
@@ -88,6 +97,15 @@ public class Login_Activity extends AppCompatActivity {
         });
     }
 
+    private void loginCheck() {
+        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREF,MODE_PRIVATE);
+        String check = sharedPreferences.getString("name","");
+        if(check.equals("true"))
+        {
+            startActivity(new Intent(Login_Activity.this,MainActivity.class));
+            finish();
+        }
+    }
 
 
     private void loginUser(String email, String password) {
@@ -98,9 +116,38 @@ public class Login_Activity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             // Login success
+                            SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREF,MODE_PRIVATE);
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
+                            editor.putString("name","true");
+                            editor.apply();
                             FirebaseUser user = mAuth.getCurrentUser();
-                            // Proceed to next screen or perform additional tasks
-                            Toast.makeText(Login_Activity.this, "Login successful", Toast.LENGTH_SHORT).show();
+                            FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+                            DatabaseReference usersRef = FirebaseDatabase.getInstance().getReference("Users");
+                            assert currentUser != null;
+                            String userId = currentUser.getUid();
+                            usersRef.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                    if (snapshot.exists()) {
+                                        // User data exists, redirect to main page
+                                        startActivity(new Intent(Login_Activity.this, MainActivity.class));
+                                        Toast.makeText(Login_Activity.this, "Login successful", Toast.LENGTH_SHORT).show();
+
+                                        finish();
+                                    } else {
+                                        // User data doesn't exist, collect biodata and physical information
+                                        // Navigate to the Biodata activity
+                                        startActivity(new Intent(Login_Activity.this,Biodata.class));
+                                        Toast.makeText(Login_Activity.this, "Login successful", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {
+                                    // Handle database error
+                                    Toast.makeText(Login_Activity.this, "Database error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+                                }
+                            }); // Add this closing brace
                         } else {
                             // Login failed
                             Toast.makeText(Login_Activity.this, "Login failed: " + Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_SHORT).show();
@@ -108,6 +155,8 @@ public class Login_Activity extends AppCompatActivity {
                     }
                 });
     }
+
+
 
     private boolean isValidEmail(String email) {
         // Use Patterns.EMAIL_ADDRESS to validate email format

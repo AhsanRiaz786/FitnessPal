@@ -36,7 +36,6 @@ public class Register_Activity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
         TextView btn = findViewById(R.id.logintextview);
         Button register = findViewById(R.id.loginbtn);
-        EditText username_field = findViewById(R.id.username);
         EditText email_field = findViewById(R.id.email);
         EditText password_field = findViewById(R.id.password);
         EditText confirmPassword_field = findViewById(R.id.confirmpassword);
@@ -49,24 +48,20 @@ public class Register_Activity extends AppCompatActivity {
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String username = username_field.getText().toString();
                 String email = email_field.getText().toString();
                 String password = password_field.getText().toString();
                 String confirmPassword = confirmPassword_field.getText().toString();
                 if (!password.equals(confirmPassword)) {
                     // Passwords don't match, show Toast message
                     Toast.makeText(Register_Activity.this, "Passwords do not match.", Toast.LENGTH_SHORT).show();
-                } else if (username.length() > 15 || username.length() < 5) {
-                    Toast.makeText(Register_Activity.this, "Username between 5 and 15 characters.", Toast.LENGTH_SHORT).show();
-
-                } else if (password.length() < 8 || password.length() > 15) {
+                }  else if (password.length() < 8 || password.length() > 15) {
                     Toast.makeText(Register_Activity.this, "Password should be between 8 and 15 characters.", Toast.LENGTH_SHORT).show();
 
                 } else if (!isValidEmail(email)) {
                     Toast.makeText(Register_Activity.this, "Email should be valid.", Toast.LENGTH_SHORT).show();
                 } else {
                     // Passwords match, proceed with registration
-                    registerUser(username, email, password);
+                    registerUser(email, password);
                     Toast.makeText(Register_Activity.this, "Registration Successful.", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -79,7 +74,7 @@ public class Register_Activity extends AppCompatActivity {
     }
 
 
-    private void registerUser(String username, String email, String password) {
+    private void registerUser(String email, String password) {
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {

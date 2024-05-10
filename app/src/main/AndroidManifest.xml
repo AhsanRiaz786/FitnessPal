@@ -16,7 +16,17 @@
         android:theme="@style/Theme.FitnessPal"
         tools:targetApi="31">
         <activity
-            android:name=".foodActivity"
+            android:name=".MainActivity"
+            android:exported="false"
+            android:theme="@style/Theme.FitnessPal" />
+        <activity
+            android:name=".MainView"
+            android:exported="false" />
+        <activity
+            android:name=".PhysicalData"
+            android:exported="false" />
+        <activity
+            android:name=".Biodata"
             android:exported="false" />
         <activity
             android:name=".ForgotActivity"
@@ -34,10 +44,16 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Register_Activity"
-            android:exported="false" />
+            android:name=".SplashActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".Register_Activity"
             android:exported="false" />
     </application>
 

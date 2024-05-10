@@ -83,7 +83,6 @@
         android:text="Login"
         android:textColor="#FFFFFF"
         android:textSize="20sp"
-        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/password"
         app:layout_constraintHorizontal_bias="1.0"
