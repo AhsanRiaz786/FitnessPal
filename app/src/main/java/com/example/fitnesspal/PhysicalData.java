@@ -51,10 +51,13 @@ public class PhysicalData extends AppCompatActivity {
 
                         // Create a User instance
                         User user = new User(name, age, gender, userHeight, userWeight);
+                        BodyMeasurements bodyMeasurements = new BodyMeasurements(userHeight, userWeight);
 
                         // Push user data to Firebase Realtime Database
                         DatabaseReference usersRef = FirebaseDatabase.getInstance().getReference("Users");
+                        DatabaseReference bodyMeasurementsDb = FirebaseDatabase.getInstance().getReference("BodyMeasurements");
                         String userId = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
+                        bodyMeasurementsDb.child(userId).setValue(bodyMeasurements);
                         usersRef.child(userId).setValue(user)
                                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
@@ -77,6 +80,8 @@ public class PhysicalData extends AppCompatActivity {
                     } else {
                         Toast.makeText(PhysicalData.this, "Enter all of the data.", Toast.LENGTH_SHORT).show();
                     }
+
+
                 }
             });
         }

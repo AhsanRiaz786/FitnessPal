@@ -1,14 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Nutrition">
+    android:background="#FFFFFF"
+    tools:context=".NutritionsFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <AutoCompleteTextView
+        android:id="@+id/foodDropdown"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:hint="Search for food"
+        android:textColor="#000000"
+        android:textColorHint="#000000" />
 
-</FrameLayout>
+    <EditText
+        android:id="@+id/quantityEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/foodDropdown"
+        android:layout_margin="16dp"
+        android:hint="Enter quantity"
+        android:inputType="number"
+        android:textColor="#000000"
+        android:textColorHint="#000000" />
+
+    <Button
+        android:id="@+id/addButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/quantityEditText"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="@color/abitdarklightblue"
+        android:text="Add"
+        android:textColor="#FFFFFF" />
+
+    <TextView
+        android:id="@+id/summaryTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/addButton"
+        android:layout_margin="16dp"
+        android:text="Today's intake:"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+</RelativeLayout>

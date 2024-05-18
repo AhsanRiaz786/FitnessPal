@@ -7,4 +7,10 @@
     <color name="StepsbarColor">#fc3d03</color>
     <color name="DistancebarColor">#fca903</color>
     <color name="CaloriesbarColor">#000000</color>
+    <color name="colorUnderweight">#FF2196F3</color> <!-- Blue -->
+    <color name="colorNormalWeight">#FF4CAF50</color> <!-- Green -->
+    <color name="colorOverweight">#FFFFC107</color> <!-- Yellow -->
+    <color name="colorObese">#FFFF5722</color> <!-- Orange -->
+
+
 </resources>

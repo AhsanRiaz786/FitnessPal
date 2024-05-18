@@ -2,14 +2,18 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:id="@+id/dashboard"
     android:title="Steps"
-    android:icon="@drawable/run"/>
+        android:padding="0dp"
+        android:icon="@drawable/run"/>
     <item android:id="@+id/activity"
         android:title="Workout"
+        android:padding="0dp"
         android:icon="@drawable/exercise"/>
     <item android:id="@+id/nutrition"
         android:title="Nutrition"
+        android:padding="0dp"
         android:icon="@drawable/nutrition"/>
     <item android:id="@+id/workout"
         android:title="Profile"
+        android:padding="0dp"
         android:icon="@drawable/baseline_person_24"/>
 </menu>

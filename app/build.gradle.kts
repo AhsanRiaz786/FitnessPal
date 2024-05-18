@@ -46,12 +46,20 @@ dependencies {
     implementation(libs.constraintlayout)
     implementation(libs.firebase.auth)
     implementation(platform("com.google.firebase:firebase-bom:33.0.0"))
+    implementation ("de.hdodenhof:circleimageview:3.1.0")
+
 
 
     // Add the dependency for the Realtime Database library
     // When using the BoM, you don't specify versions in Firebase library dependencies
     implementation("com.google.firebase:firebase-database")
     implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
+    implementation ("com.squareup.picasso:picasso:2.71828")
+    implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1")
+    implementation ("androidx.lifecycle:lifecycle-livedata-ktx:2.3.1")
+    implementation ("com.google.firebase:firebase-storage")
+
+
 
     // https://mvnrepository.com/artifact/mysql/mysql-connector-java
     //noinspection UseTomlInstead

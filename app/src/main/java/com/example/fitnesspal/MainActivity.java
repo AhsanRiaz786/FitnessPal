@@ -16,7 +16,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
-BottomNavigationView bnView ;
+    BottomNavigationView bnView ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,12 +38,12 @@ BottomNavigationView bnView ;
                 }
                 else if(id==R.id.nutrition)
                 {
-                    loadFrag(new Nutrition(),false);
+                    loadFrag(new NutritionsFragment(),false);
                 }
                 else
                 {
-                    loadFrag(new Workout(),true);
-                }
+                    loadFrag(new Workout(),false);
+                    }
                 return true;
             }
         });
